@@ -13,6 +13,17 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+// May contain unused imports in some cases
+// @ts-ignore
+import { GoalCreateInput } from './goal-create-input';
+// May contain unused imports in some cases
+// @ts-ignore
+import { GoalUpdateInputAllOf } from './goal-update-input-all-of';
+
+/**
+ * @type GoalUpdateInput
+ * @export
+ */
+export type GoalUpdateInput = GoalCreateInput & GoalUpdateInputAllOf;
+
+

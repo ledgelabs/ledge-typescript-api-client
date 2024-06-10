@@ -13,6 +13,18 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface GoalUpdateInputAllOf
+ */
+export interface GoalUpdateInputAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof GoalUpdateInputAllOf
+     */
+    'goalId': string;
+}
+

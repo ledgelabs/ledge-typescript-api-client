@@ -13,6 +13,18 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface TrackActivity200Response
+ */
+export interface TrackActivity200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof TrackActivity200Response
+     */
+    'message': string;
+}
+

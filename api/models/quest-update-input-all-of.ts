@@ -13,6 +13,18 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface QuestUpdateInputAllOf
+ */
+export interface QuestUpdateInputAllOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof QuestUpdateInputAllOf
+     */
+    'questId': string;
+}
+

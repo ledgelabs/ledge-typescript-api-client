@@ -13,6 +13,30 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface ExternalUser
+ */
+export interface ExternalUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalUser
+     */
+    'originalCreationDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalUser
+     */
+    'userId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalUser
+     */
+    'username': string;
+}
+

@@ -13,6 +13,18 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * Batch Payload for updateMany & deleteMany & createMany
+ * @export
+ * @interface PrismaBatchPayload
+ */
+export interface PrismaBatchPayload {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrismaBatchPayload
+     */
+    'count': number;
+}
+

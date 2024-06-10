@@ -13,6 +13,21 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const Gender = {
+    Male: 'male',
+    Female: 'female',
+    Other: 'other',
+    Unknown: 'unknown'
+} as const;
+
+export type Gender = typeof Gender[keyof typeof Gender];
+
+
+

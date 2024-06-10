@@ -13,6 +13,24 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface RegisterUser200Response
+ */
+export interface RegisterUser200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUser200Response
+     */
+    'linkingCode': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUser200Response
+     */
+    'ledgeLink': string;
+}
+

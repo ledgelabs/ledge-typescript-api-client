@@ -13,6 +13,24 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface QuestScheduleUpdateInputAllOf
+ */
+export interface QuestScheduleUpdateInputAllOf {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof QuestScheduleUpdateInputAllOf
+     */
+    'recurring': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuestScheduleUpdateInputAllOf
+     */
+    'questScheduleId': string;
+}
+
