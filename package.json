@@ -1,9 +1,10 @@
 {
   "name": "@ledgelabs/typescript-api-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Partnership SDK for integrating with Game Studios in order to provide a full event experience.",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,5 +15,8 @@
     "url": "https://github.com/ledgelabs/ledge-typescript-api-client/issues"
   },
   "homepage": "https://github.com/ledgelabs/ledge-typescript-api-client",
-  "author": ""
+  "author": "",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
 }
