@@ -1,13 +1,13 @@
 .gitignore
 .npmignore
-README.md
+.openapi-generator-ignore
 api.ts
+api/external-api.ts
 base.ts
 common.ts
 configuration.ts
 git_push.sh
 index.ts
-ledge-api/external-api.ts
 models/activity-type.ts
 models/error-response.ts
 models/external-user.ts
@@ -38,5 +38,3 @@ models/register-user200-response.ts
 models/track-activity-input.ts
 models/track-activity200-response.ts
 models/user.ts
-package.json
-tsconfig.json

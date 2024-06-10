@@ -14,5 +14,5 @@
 
 
 
-export * from './ledge-api/external-api';
+export * from './api/external-api';
 
