@@ -39,14 +39,11 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @param {string} apiKey 
          * @param {ExternalUser} externalUser 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerUser: async (apiKey: string, externalUser: ExternalUser, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('registerUser', 'apiKey', apiKey)
+        registerUser: async (externalUser: ExternalUser, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'externalUser' is not null or undefined
             assertParamExists('registerUser', 'externalUser', externalUser)
             const localVarPath = `/external/users`;
@@ -61,9 +58,8 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (apiKey != null) {
-                localVarHeaderParameter['ApiKey'] = String(apiKey);
-            }
+            // authentication api_key required
+            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
 
 
     
@@ -81,14 +77,11 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {string} apiKey 
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trackActivity: async (apiKey: string, trackActivityInput: TrackActivityInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'apiKey' is not null or undefined
-            assertParamExists('trackActivity', 'apiKey', apiKey)
+        trackActivity: async (trackActivityInput: TrackActivityInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'trackActivityInput' is not null or undefined
             assertParamExists('trackActivity', 'trackActivityInput', trackActivityInput)
             const localVarPath = `/external/activities`;
@@ -103,9 +96,8 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (apiKey != null) {
-                localVarHeaderParameter['ApiKey'] = String(apiKey);
-            }
+            // authentication api_key required
+            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
 
 
     
@@ -133,24 +125,22 @@ export const ExternalApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} apiKey 
          * @param {ExternalUser} externalUser 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerUser(apiKey: string, externalUser: ExternalUser, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUser200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(apiKey, externalUser, options);
+        async registerUser(externalUser: ExternalUser, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisterUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.registerUser(externalUser, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {string} apiKey 
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trackActivity(apiKey: string, trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackActivity200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.trackActivity(apiKey, trackActivityInput, options);
+        async trackActivity(trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackActivity200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trackActivity(trackActivityInput, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -165,23 +155,21 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @param {string} apiKey 
          * @param {ExternalUser} externalUser 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        registerUser(apiKey: string, externalUser: ExternalUser, options?: any): AxiosPromise<RegisterUser200Response> {
-            return localVarFp.registerUser(apiKey, externalUser, options).then((request) => request(axios, basePath));
+        registerUser(externalUser: ExternalUser, options?: any): AxiosPromise<RegisterUser200Response> {
+            return localVarFp.registerUser(externalUser, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {string} apiKey 
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trackActivity(apiKey: string, trackActivityInput: TrackActivityInput, options?: any): AxiosPromise<TrackActivity200Response> {
-            return localVarFp.trackActivity(apiKey, trackActivityInput, options).then((request) => request(axios, basePath));
+        trackActivity(trackActivityInput: TrackActivityInput, options?: any): AxiosPromise<TrackActivity200Response> {
+            return localVarFp.trackActivity(trackActivityInput, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -195,25 +183,23 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
 export class ExternalApi extends BaseAPI {
     /**
      * 
-     * @param {string} apiKey 
      * @param {ExternalUser} externalUser 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExternalApi
      */
-    public registerUser(apiKey: string, externalUser: ExternalUser, options?: AxiosRequestConfig) {
-        return ExternalApiFp(this.configuration).registerUser(apiKey, externalUser, options).then((request) => request(this.axios, this.basePath));
+    public registerUser(externalUser: ExternalUser, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).registerUser(externalUser, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {string} apiKey 
      * @param {TrackActivityInput} trackActivityInput 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExternalApi
      */
-    public trackActivity(apiKey: string, trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig) {
-        return ExternalApiFp(this.configuration).trackActivity(apiKey, trackActivityInput, options).then((request) => request(this.axios, this.basePath));
+    public trackActivity(trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).trackActivity(trackActivityInput, options).then((request) => request(this.axios, this.basePath));
     }
 }
