@@ -9,6 +9,11 @@ Welcome to Ledge Developer Docs. We are constantly improving and we'd greattly a
 Table of Contents:
 [WIP]
 
+# Important Notes
+
+- We recommend you use our SDK on the server side.
+- We recommend you track user activity in batches.
+
 # Quick Start
 
 ## Requirements:
