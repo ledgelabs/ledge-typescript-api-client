@@ -1,6 +1,6 @@
 {
   "name": "@ledgelabs/typescript-api-client",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "dist/api/index.js",
   "license": "MIT",
   "description": "Partnership SDK for integrating with Game Studios in order to provide a full event experience.",
