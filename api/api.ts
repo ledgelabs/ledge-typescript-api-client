@@ -14,5 +14,5 @@
 
 
 
-export * from './api/external-api';
+export * from './src/external-api';
 

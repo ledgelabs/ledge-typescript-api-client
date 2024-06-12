@@ -1,7 +1,6 @@
 .gitignore
 .npmignore
 api.ts
-api/external-api.ts
 base.ts
 common.ts
 configuration.ts
@@ -37,3 +36,4 @@ models/register-user200-response.ts
 models/track-activity-input.ts
 models/track-activity200-response.ts
 models/user.ts
+src/external-api.ts
