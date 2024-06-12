@@ -68,3 +68,80 @@ await extApi.trackActivity({
     count: 1,
   });
 ```
+
+# SDK Reference
+
+### registerUser(externalUser: ExternalUser)
+
+**Description**
+
+Registers this user (externally) with Ledge, so we can begin tracking their in game activity
+
+Ideally, call this method as soon as this user starts the game.
+
+**Params**
+
+```
+export interface ExternalUser {
+    originalCreationDate?: string;
+    userId: string;
+    username: string;
+}
+```
+
+originalCreationDate is used for attribution purposes and revenue sharing but is optional, leaving this undefined will simply not attribute this user's acquisition and consequently no revenue shared. **Input this parameter if unsure**.
+
+username does not need to be unique.
+
+userId must be unique per user per game.
+
+**Return Type**
+
+```
+export interface RegisterUser200Response {
+    linkingCode: string;
+    ledgeLink: string;
+}
+```
+
+linkingCode is a unique code per user per game, used to identify your registered user with a Ledge account.
+
+ledgeLink is a link to Ledge login page with a linking code.
+
+### trackActivity(trackActivityInput: TrackActivityInput)
+
+**Description**
+
+Tracks a single game activity/event from a user.
+
+Use this method, if there are no plans to track activities in batches. Otherwise, tracking activities in batches is preferred for efficiency and to reduce load on our systems.
+
+**Params**
+
+```
+export interface TrackActivityInput {
+    occurrence: string;
+    count?: number;
+    activityId: string;
+    userId: string;
+}
+
+```
+
+occurrence is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
+
+count is the number of times this event happened. Default is 1.
+
+activityId is similar to an analytics tracking event name which is used to identify activities with their quests.
+
+userId is the same userId used to register this user.
+
+**Return Type**
+
+```
+export interface TrackActivity200Response {
+  message: string;
+}
+```
+
+message indicating activity has been successfully recorded and has been queued for processing.
