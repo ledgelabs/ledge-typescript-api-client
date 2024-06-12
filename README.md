@@ -11,7 +11,7 @@ Table of Contents:
 
 # Important Notes
 
-- We recommend you use our SDK on the server side.
+- We recommend you use our SDK on the server side for performance and security.
 - We recommend you track user activity in batches.
 
 # Quick Start
@@ -42,7 +42,9 @@ const config = new Configuration({
 });
 ```
 
-## 3. Call our register user endpoint
+## 3. Register user so we can track activity
+
+- Register this user as soon as possible, ideally when they open the game. so that we can start tracking player activity, and reward progress towards quests.
 
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
@@ -50,8 +52,19 @@ import { ExternalApi } from "@ledgelabs/typescript-api-client";
 const extApi = new ExternalApi(config);
 
 await extApi.registerUser("fake-api-key", {
-    userId: "random-fake-test-user-external",
+    userId: "fake-user-id",
     username: "random-fake-username",
     originalCreationDate: new Date().toISOString(),
 });
+```
+
+## 4. Track in game user activity
+
+```
+await extApi.trackActivity({
+    activityId: "kill-5-ogres",
+    occurrence: "2024-04-20T18:18:03.369Z",
+    userId: "fake-user-id",
+    count: 1,
+  });
 ```
