@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ledgelabs/ledge-typescript-api-client",
   "author": "",
   "dependencies": {
+    "@types/node": "^18.15.11",
     "axios": "^1.4.0"
   }
 }
