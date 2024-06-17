@@ -48,7 +48,7 @@ import { Configuration } from "@ledgelabs/typescript-api-client";
 
 const config = new Configuration({
   apiKey: API_KEY
-  basePath: API-URL,
+  basePath: API_URL,
 });
 ```
 
@@ -153,5 +153,48 @@ export interface TrackActivity200Response {
   message: string;
 }
 ```
+
+message indicating activity has been successfully recorded and has been queued for processing.
+
+### trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)
+
+**Description**
+
+Track a batch of game activities (events) for a given user ID.
+
+This method is similar to trackActivity(), but it allows tracking multiple activities in a single request.
+
+**Params**
+
+```
+userId: string
+
+export interface TrackBatchActivitiesInput = {
+  activityId: string;
+  count?: number;
+  occurrence: string;
+}[];
+
+```
+
+userId is the same userId used to register this user.
+
+activityId is similar to an analytics tracking event name which is used to identify activities with their quests.
+
+count is the number of times this event happened. Default is 1.
+
+occurrence is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
+
+**Return Type**
+
+```
+export interface TrackBatchActivitiesByUser200Response {
+    'count': number;
+    'message': string;
+}
+
+```
+
+count indicating the number of succesfully inserted activities.
 
 message indicating activity has been successfully recorded and has been queued for processing.
