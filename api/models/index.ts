@@ -1,4 +1,5 @@
 export * from './activity-type';
+export * from './banner';
 export * from './error-response';
 export * from './external-user';
 export * from './gender';

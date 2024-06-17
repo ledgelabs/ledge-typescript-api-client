@@ -14,5 +14,6 @@
 
 
 
+export * from './src/event-api';
 export * from './src/external-api';
 
