@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 base.ts
 common.ts
@@ -8,7 +7,6 @@ configuration.ts
 git_push.sh
 index.ts
 models/activity-type.ts
-models/banner.ts
 models/error-response.ts
 models/external-user.ts
 models/gender.ts
@@ -37,6 +35,7 @@ models/quest.ts
 models/register-user200-response.ts
 models/track-activity-input.ts
 models/track-activity200-response.ts
+models/track-batch-activities-by-user200-response.ts
+models/track-batch-activities-input-inner.ts
 models/user.ts
-src/event-api.ts
 src/external-api.ts

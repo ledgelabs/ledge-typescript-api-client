@@ -31,6 +31,10 @@ import { RegisterUser200Response } from '../models';
 import { TrackActivity200Response } from '../models';
 // @ts-ignore
 import { TrackActivityInput } from '../models';
+// @ts-ignore
+import { TrackBatchActivitiesByUser200Response } from '../models';
+// @ts-ignore
+import { TrackBatchActivitiesInputInner } from '../models';
 /**
  * ExternalApi - axios parameter creator
  * @export
@@ -76,7 +80,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * 
+         * Tracks a single game activity (or event) from a user.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -113,6 +117,51 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
+         * @param {string} userId 
+         * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trackBatchActivitiesByUser: async (userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('trackBatchActivitiesByUser', 'userId', userId)
+            // verify required parameter 'trackBatchActivitiesInputInner' is not null or undefined
+            assertParamExists('trackBatchActivitiesByUser', 'trackBatchActivitiesInputInner', trackBatchActivitiesInputInner)
+            const localVarPath = `/external/batch-user-activities`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(trackBatchActivitiesInputInner, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -134,13 +183,24 @@ export const ExternalApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Tracks a single game activity (or event) from a user.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async trackActivity(trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackActivity200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trackActivity(trackActivityInput, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
+         * @param {string} userId 
+         * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackBatchActivitiesByUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -163,13 +223,23 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.registerUser(externalUser, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Tracks a single game activity (or event) from a user.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         trackActivity(trackActivityInput: TrackActivityInput, options?: any): AxiosPromise<TrackActivity200Response> {
             return localVarFp.trackActivity(trackActivityInput, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
+         * @param {string} userId 
+         * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: any): AxiosPromise<TrackBatchActivitiesByUser200Response> {
+            return localVarFp.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -193,7 +263,7 @@ export class ExternalApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Tracks a single game activity (or event) from a user.
      * @param {TrackActivityInput} trackActivityInput 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -201,5 +271,17 @@ export class ExternalApi extends BaseAPI {
      */
     public trackActivity(trackActivityInput: TrackActivityInput, options?: AxiosRequestConfig) {
         return ExternalApiFp(this.configuration).trackActivity(trackActivityInput, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
+     * @param {string} userId 
+     * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(this.axios, this.basePath));
     }
 }

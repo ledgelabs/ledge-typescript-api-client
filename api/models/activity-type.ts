@@ -15,7 +15,7 @@
 
 
 /**
- * Enums
+ * 
  * @export
  * @enum {string}
  */

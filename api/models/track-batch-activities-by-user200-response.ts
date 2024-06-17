@@ -14,5 +14,23 @@
 
 
 
-export * from './src/external-api';
+/**
+ * 
+ * @export
+ * @interface TrackBatchActivitiesByUser200Response
+ */
+export interface TrackBatchActivitiesByUser200Response {
+    /**
+     * 
+     * @type {number}
+     * @memberof TrackBatchActivitiesByUser200Response
+     */
+    'count': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrackBatchActivitiesByUser200Response
+     */
+    'message': string;
+}
 
