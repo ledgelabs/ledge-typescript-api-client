@@ -214,7 +214,7 @@ message indicating activity has been successfully recorded and has been queued f
 
 </details>
 
-## Ledge Client Error Types
+# Ledge Client Error Types
 
 ### ApiError
 
