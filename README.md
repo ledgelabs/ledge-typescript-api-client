@@ -101,11 +101,11 @@ export interface ExternalUser {
 }
 ```
 
-originalCreationDate is used for attribution purposes and revenue sharing but is optional, leaving this undefined will simply not attribute this user's acquisition and consequently no revenue shared. **Input this parameter if unsure**.
+_originalCreationDate_ is used for attribution purposes and revenue sharing but is optional, leaving this undefined will simply not attribute this user's acquisition and consequently no revenue shared. **Input this parameter if unsure**.
 
-username does not need to be unique.
+_username_ does not need to be unique.
 
-userId must be unique per user per game.
+_userId_ must be unique for each player within a game (per API_KEY)
 
 #### Return Type
 
@@ -116,9 +116,9 @@ export interface RegisterUser200Response {
 }
 ```
 
-linkingCode is a unique code per user per game, used to identify your registered user with a Ledge account.
+_linkingCode_ is a unique code per user per game, used to identify your registered user with a Ledge account.
 
-ledgeLink is a link to Ledge login page with a linking code.
+_ledgeLink_ is a link to Ledge login page with a linking code.
 
 </details>
 
@@ -145,23 +145,32 @@ export interface TrackActivityInput {
 
 ```
 
-occurrence is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
+_occurrence_ is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
 
-count is the number of times this event happened. Default is 1.
+_count_ is the number of times this event happened. Default is 1.
 
-activityId is similar to an analytics tracking event name which is used to identify activities with their quests.
+_activityId_ is similar to an analytics tracking event name which is used to identify activities with their quests.
 
-userId is the same userId used to register this user.
+_userId_ is the same userId used to register this user.
 
 #### Return Type
 
 ```
 export interface TrackActivity200Response {
   message: string;
+  data: {
+    activityId: string;
+    userId: string;
+    count: number;
+    occurence: Date;
+    processed: boolean;
+  } | null;
 }
 ```
 
-message indicating activity has been successfully recorded and has been queued for processing.
+_message_ indicating activity has been successfully recorded and has been queued for processing.
+
+_data_ is null if no activity was tracked. Otherwise, returns tracked activity data.
 
 </details>
 
@@ -172,9 +181,7 @@ message indicating activity has been successfully recorded and has been queued f
 
 Track an array of game activities (events) for a given user ID.
 
-This method is similar to trackActivity(), but it allows tracking multiple activities in a single request.
-
-See [trackActivity](#trackactivitytrackactivityinput-trackactivityinput) for details.
+This method is similar to [trackActivity](#trackactivitytrackactivityinput-trackactivityinput), but it allows tracking multiple activities in a single request.
 
 #### Params
 
@@ -189,13 +196,7 @@ export interface TrackBatchActivitiesInput = {
 
 ```
 
-userId is the same userId used to register this user.
-
-activityId is similar to an analytics tracking event name which is used to identify activities with their quests.
-
-count is the number of times this event happened. Default is 1.
-
-occurrence is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
+See [trackActivity](#trackactivitytrackactivityinput-trackactivityinput) for details about params.
 
 #### Return Type
 
@@ -212,3 +213,22 @@ count indicating the number of succesfully inserted activities.
 message indicating activity has been successfully recorded and has been queued for processing.
 
 </details>
+
+## Ledge Client Error Types
+
+### ApiError
+
+| Property | Description                                                                                                                                         |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code     | Ledge Specific status code which follows [HTTP response status codes](#https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) for the most part. |
+| message  | Error message associated with this error code                                                                                                       |
+
+### Error Codes
+
+`403` Invalid Api Key. Please reach out to Ledge.
+
+`400` Bad Request (e.g missing data, invalid inputs).
+
+`409` Conflict: User not registered, skipping this user. Make sure this user is registered with the ledge via [registerUser](#registeruserexternaluser-externaluser)
+
+`500` Internal Server Error.
