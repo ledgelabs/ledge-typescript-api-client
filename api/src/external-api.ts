@@ -80,7 +80,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Tracks a single game activity (or event) from a user.
+         * Tracks a single game activity (or event) from a user. In order to prevent duplicate activity data, each userId, activityId, and occurrence combined should be unique.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -183,7 +183,7 @@ export const ExternalApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Tracks a single game activity (or event) from a user.
+         * Tracks a single game activity (or event) from a user. In order to prevent duplicate activity data, each userId, activityId, and occurrence combined should be unique.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -223,7 +223,7 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.registerUser(externalUser, options).then((request) => request(axios, basePath));
         },
         /**
-         * Tracks a single game activity (or event) from a user.
+         * Tracks a single game activity (or event) from a user. In order to prevent duplicate activity data, each userId, activityId, and occurrence combined should be unique.
          * @param {TrackActivityInput} trackActivityInput 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -263,7 +263,7 @@ export class ExternalApi extends BaseAPI {
     }
 
     /**
-     * Tracks a single game activity (or event) from a user.
+     * Tracks a single game activity (or event) from a user. In order to prevent duplicate activity data, each userId, activityId, and occurrence combined should be unique.
      * @param {TrackActivityInput} trackActivityInput 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -34,6 +34,7 @@ models/quest-update-input.ts
 models/quest.ts
 models/register-user200-response.ts
 models/track-activity-input.ts
+models/track-activity200-response-data.ts
 models/track-activity200-response.ts
 models/track-batch-activities-by-user200-response.ts
 models/track-batch-activities-input-inner.ts

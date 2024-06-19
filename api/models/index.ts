@@ -25,6 +25,7 @@ export * from './quest-update-input';
 export * from './quest-update-input-all-of';
 export * from './register-user200-response';
 export * from './track-activity200-response';
+export * from './track-activity200-response-data';
 export * from './track-activity-input';
 export * from './track-batch-activities-by-user200-response';
 export * from './track-batch-activities-input-inner';

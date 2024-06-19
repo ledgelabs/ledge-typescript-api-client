@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { TrackActivity200ResponseData } from './track-activity200-response-data';
 
 /**
  * 
@@ -20,6 +23,12 @@
  * @interface TrackActivity200Response
  */
 export interface TrackActivity200Response {
+    /**
+     * 
+     * @type {TrackActivity200ResponseData}
+     * @memberof TrackActivity200Response
+     */
+    'data': TrackActivity200ResponseData | null;
     /**
      * 
      * @type {string}
