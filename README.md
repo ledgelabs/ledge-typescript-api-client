@@ -18,6 +18,7 @@ Welcome to Ledge Developer Docs. We are constantly improving and we'd greatly ap
 - [SDK Reference](#sdk-reference)
   - [registerUser](#registeruserexternaluser-externaluser)
   - [trackActivity](#trackactivitytrackactivityinput-trackactivityinput)
+  - [trackBatchActivitiesByUser](#trackbatchactivitiesbyuseruseridstring-inputs-trackbatchactivitiesinput)
 
 # Important Notes
 
@@ -81,15 +82,15 @@ await extApi.trackActivity({
 
 # SDK Reference
 
-### registerUser(externalUser: ExternalUser)
+## registerUser(externalUser: ExternalUser)
 
-**Description**
+#### Description
 
 Registers this user (externally) with Ledge, so we can begin tracking their in game activity
 
 Ideally, call this method as soon as this user starts the game.
 
-**Params**
+#### Params
 
 ```
 export interface ExternalUser {
@@ -105,7 +106,7 @@ username does not need to be unique.
 
 userId must be unique per user per game.
 
-**Return Type**
+#### Return Type
 
 ```
 export interface RegisterUser200Response {
@@ -118,15 +119,17 @@ linkingCode is a unique code per user per game, used to identify your registered
 
 ledgeLink is a link to Ledge login page with a linking code.
 
-### trackActivity(trackActivityInput: TrackActivityInput)
+## trackActivity(trackActivityInput: TrackActivityInput)
 
-**Description**
+#### Description
 
 Tracks a single game activity/event from a user.
 
+In order to prevent tracking duplicate activities **each userId, activityId, and occurrence when combined should be unique**.
+
 Use this method, if there are no plans to track activities in batches. Otherwise, tracking activities in batches is preferred for efficiency and to reduce load on our systems.
 
-**Params**
+#### Params
 
 ```
 export interface TrackActivityInput {
@@ -146,7 +149,7 @@ activityId is similar to an analytics tracking event name which is used to ident
 
 userId is the same userId used to register this user.
 
-**Return Type**
+#### Return Type
 
 ```
 export interface TrackActivity200Response {
@@ -156,15 +159,17 @@ export interface TrackActivity200Response {
 
 message indicating activity has been successfully recorded and has been queued for processing.
 
-### trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)
+## trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)
 
-**Description**
+#### Description
 
-Track a batch of game activities (events) for a given user ID.
+Track an array of game activities (events) for a given user ID.
 
 This method is similar to trackActivity(), but it allows tracking multiple activities in a single request.
 
-**Params**
+See [trackActivity](#trackactivitytrackactivityinput-trackactivityinput) for details.
+
+#### Params
 
 ```
 userId: string
@@ -185,7 +190,7 @@ count is the number of times this event happened. Default is 1.
 
 occurrence is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
 
-**Return Type**
+#### Return Type
 
 ```
 export interface TrackBatchActivitiesByUser200Response {
