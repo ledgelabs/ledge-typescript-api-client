@@ -60,9 +60,9 @@ const config = new Configuration({
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
 
-const extApi = new ExternalApi(config);
+const ledgeApi = new ExternalApi(config);
 
-await extApi.registerUser("fake-api-key", {
+await ledgeApi.registerUser("fake-api-key", {
     userId: "fake-user-id",
     username: "random-fake-username",
     originalCreationDate: new Date().toISOString(),
@@ -72,7 +72,7 @@ await extApi.registerUser("fake-api-key", {
 ### 4. Track in-game user activity
 
 ```
-await extApi.trackActivity({
+await ledgeApi.trackActivity({
     activityId: "kill-5-ogres",
     occurrence: "2024-04-20T18:18:03.369Z",
     userId: "fake-user-id",
@@ -82,7 +82,8 @@ await extApi.trackActivity({
 
 # SDK Reference
 
-## registerUser(externalUser: ExternalUser)
+<details>
+<summary>registerUser(externalUser: ExternalUser)</summary>
 
 #### Description
 
@@ -119,7 +120,10 @@ linkingCode is a unique code per user per game, used to identify your registered
 
 ledgeLink is a link to Ledge login page with a linking code.
 
-## trackActivity(trackActivityInput: TrackActivityInput)
+</details>
+
+<details>
+<summary>trackActivity(trackActivityInput: TrackActivityInput)</summary>
 
 #### Description
 
@@ -159,7 +163,10 @@ export interface TrackActivity200Response {
 
 message indicating activity has been successfully recorded and has been queued for processing.
 
-## trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)
+</details>
+
+<details>
+<summary>trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)</summary>
 
 #### Description
 
@@ -203,3 +210,5 @@ export interface TrackBatchActivitiesByUser200Response {
 count indicating the number of succesfully inserted activities.
 
 message indicating activity has been successfully recorded and has been queued for processing.
+
+</details>
