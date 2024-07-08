@@ -94,7 +94,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'avatar': string;
+    'avatarUrl': string | null;
     /**
      * 
      * @type {number}

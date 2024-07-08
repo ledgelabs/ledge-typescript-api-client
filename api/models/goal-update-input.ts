@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ActivityType } from './activity-type';
+// May contain unused imports in some cases
+// @ts-ignore
 import { GoalCreateInput } from './goal-create-input';
 // May contain unused imports in some cases
 // @ts-ignore

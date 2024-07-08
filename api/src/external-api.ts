@@ -63,7 +63,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
             // authentication api_key required
-            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
+            await setApiKeyToObject(localVarHeaderParameter, "access_token", configuration)
 
 
     
@@ -101,7 +101,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
             // authentication api_key required
-            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
+            await setApiKeyToObject(localVarHeaderParameter, "access_token", configuration)
 
 
     
@@ -142,7 +142,7 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
             // authentication api_key required
-            await setApiKeyToObject(localVarQueryParameter, "access_token", configuration)
+            await setApiKeyToObject(localVarHeaderParameter, "access_token", configuration)
 
             if (userId !== undefined) {
                 localVarQueryParameter['userId'] = userId;

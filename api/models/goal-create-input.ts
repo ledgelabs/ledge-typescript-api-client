@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ActivityType } from './activity-type';
 
 /**
  * 
@@ -40,6 +43,12 @@ export interface GoalCreateInput {
     'description'?: string;
     /**
      * 
+     * @type {ActivityType}
+     * @memberof GoalCreateInput
+     */
+    'activityType': ActivityType;
+    /**
+     * 
      * @type {string}
      * @memberof GoalCreateInput
      */
@@ -63,4 +72,6 @@ export interface GoalCreateInput {
      */
     'title': string;
 }
+
+
 
