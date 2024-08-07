@@ -24,6 +24,8 @@ Welcome to Ledge Developer Docs. We are constantly improving and we'd greatly ap
 
 - We recommend you use our SDK on the server side for performance and security.
 - We recommend you track user activity in batches.
+- Have our SDK integrated and ready for testing 1-2 weeks before the event start date.
+- Register your users as early as possible to begin tracking their in game activity.
 
 # Quick Start
 
@@ -56,6 +58,7 @@ const config = new Configuration({
 ### 3. Register user so we can track activity
 
 - Register this user as soon as possible, ideally when they open the game. so that we can start tracking player activity and reward progress towards quests.
+- Original creation date is when this user first joined your game.
 
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
@@ -213,6 +216,8 @@ count indicating the number of succesfully inserted activities.
 message indicating activity has been successfully recorded and has been queued for processing.
 
 </details>
+
+<br>
 
 # Ledge Client Error Types
 
