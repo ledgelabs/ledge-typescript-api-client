@@ -17,19 +17,20 @@
 /**
  * 
  * @export
- * @enum {string}
+ * @interface BanUserRequest
  */
-
-export const QuestType = {
-    Individual: 'INDIVIDUAL',
-    Community: 'COMMUNITY',
-    IndividualDaily: 'INDIVIDUAL_DAILY',
-    IndividualSocial: 'INDIVIDUAL_SOCIAL',
-    DailyIndividual: 'DAILY_INDIVIDUAL',
-    SocialIndividual: 'SOCIAL_INDIVIDUAL'
-} as const;
-
-export type QuestType = typeof QuestType[keyof typeof QuestType];
-
-
+export interface BanUserRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BanUserRequest
+     */
+    'notes': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BanUserRequest
+     */
+    'userId': string;
+}
 

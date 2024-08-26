@@ -22,16 +22,22 @@
 export interface PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPrismaLeaderboardRewardUncheckedCreateInputIdOrCreatedAtOrUpdatedAt {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPrismaLeaderboardRewardUncheckedCreateInputIdOrCreatedAtOrUpdatedAt
      */
-    'quantity'?: number;
+    'productId': string;
     /**
      * 
      * @type {number}
      * @memberof PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPrismaLeaderboardRewardUncheckedCreateInputIdOrCreatedAtOrUpdatedAt
      */
     'rewardPlace': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPrismaLeaderboardRewardUncheckedCreateInputIdOrCreatedAtOrUpdatedAt
+     */
+    'quantity'?: number;
     /**
      * 
      * @type {string}
@@ -43,6 +49,6 @@ export interface PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPris
      * @type {string}
      * @memberof PickPrismaLeaderboardRewardUncheckedCreateInputExcludeKeyofPrismaLeaderboardRewardUncheckedCreateInputIdOrCreatedAtOrUpdatedAt
      */
-    'productId': string;
+    'leaderboardResultId'?: string | null;
 }
 

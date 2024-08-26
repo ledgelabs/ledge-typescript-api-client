@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { BanUserRequest } from '../models';
+// @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
 import { ExternalUser } from '../models';
@@ -41,6 +43,44 @@ import { TrackBatchActivitiesInputInner } from '../models';
  */
 export const ExternalApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Immediately ban this user from winning prizes. Progress towards quests, leaderboard, ...etc, will still be tracked. This ban applies to current and future events for your game.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banUser: async (banUserRequest: BanUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'banUserRequest' is not null or undefined
+            assertParamExists('banUser', 'banUserRequest', banUserRequest)
+            const localVarPath = `/external/ban`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            await setApiKeyToObject(localVarHeaderParameter, "access_token", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(banUserRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {ExternalUser} externalUser 
@@ -162,6 +202,44 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Immediately unban this user from winning prizes.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unBanUser: async (banUserRequest: BanUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'banUserRequest' is not null or undefined
+            assertParamExists('unBanUser', 'banUserRequest', banUserRequest)
+            const localVarPath = `/external/un-ban`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key required
+            await setApiKeyToObject(localVarHeaderParameter, "access_token", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(banUserRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -172,6 +250,16 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
 export const ExternalApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ExternalApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Immediately ban this user from winning prizes. Progress towards quests, leaderboard, ...etc, will still be tracked. This ban applies to current and future events for your game.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async banUser(banUserRequest: BanUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.banUser(banUserRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
         /**
          * 
          * @param {ExternalUser} externalUser 
@@ -203,6 +291,16 @@ export const ExternalApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Immediately unban this user from winning prizes.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unBanUser(banUserRequest: BanUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unBanUser(banUserRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -213,6 +311,15 @@ export const ExternalApiFp = function(configuration?: Configuration) {
 export const ExternalApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ExternalApiFp(configuration)
     return {
+        /**
+         * Immediately ban this user from winning prizes. Progress towards quests, leaderboard, ...etc, will still be tracked. This ban applies to current and future events for your game.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        banUser(banUserRequest: BanUserRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.banUser(banUserRequest, options).then((request) => request(axios, basePath));
+        },
         /**
          * 
          * @param {ExternalUser} externalUser 
@@ -241,6 +348,15 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
         trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: any): AxiosPromise<TrackBatchActivitiesByUser200Response> {
             return localVarFp.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Immediately unban this user from winning prizes.
+         * @param {BanUserRequest} banUserRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unBanUser(banUserRequest: BanUserRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.unBanUser(banUserRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -251,6 +367,17 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class ExternalApi extends BaseAPI {
+    /**
+     * Immediately ban this user from winning prizes. Progress towards quests, leaderboard, ...etc, will still be tracked. This ban applies to current and future events for your game.
+     * @param {BanUserRequest} banUserRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public banUser(banUserRequest: BanUserRequest, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).banUser(banUserRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {ExternalUser} externalUser 
@@ -283,5 +410,16 @@ export class ExternalApi extends BaseAPI {
      */
     public trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: AxiosRequestConfig) {
         return ExternalApiFp(this.configuration).trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Immediately unban this user from winning prizes.
+     * @param {BanUserRequest} banUserRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExternalApi
+     */
+    public unBanUser(banUserRequest: BanUserRequest, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).unBanUser(banUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

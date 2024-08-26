@@ -34,6 +34,12 @@ export interface Goal {
      * @type {string}
      * @memberof Goal
      */
+    'openUrl': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Goal
+     */
     'objectId': string | null;
     /**
      * 

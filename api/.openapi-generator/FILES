@@ -7,6 +7,7 @@ configuration.ts
 git_push.sh
 index.ts
 models/activity-type.ts
+models/ban-user-request.ts
 models/error-response.ts
 models/external-user.ts
 models/gender.ts
@@ -18,7 +19,7 @@ models/index.ts
 models/leaderboard-create-input.ts
 models/leaderboard-schedule.ts
 models/leaderboard.ts
-models/pick-prisma-goal-product-unchecked-create-input-exclude-keyof-prisma-goal-product-unchecked-create-input-id-or-created-at-or-updated-at-or-user-quest-draws.ts
+models/pick-prisma-goal-product-unchecked-create-input-exclude-keyof-prisma-goal-product-unchecked-create-input-id-or-created-at-or-updated-at.ts
 models/pick-prisma-leaderboard-reward-unchecked-create-input-exclude-keyof-prisma-leaderboard-reward-unchecked-create-input-id-or-created-at-or-updated-at.ts
 models/prisma-batch-payload.ts
 models/quest-create-input.ts

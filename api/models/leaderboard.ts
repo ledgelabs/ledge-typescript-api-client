@@ -31,6 +31,12 @@ export interface Leaderboard {
      * @type {string}
      * @memberof Leaderboard
      */
+    'eventId': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Leaderboard
+     */
     'altScoreTextAlias': string | null;
     /**
      * 

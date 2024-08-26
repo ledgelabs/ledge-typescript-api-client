@@ -1,4 +1,5 @@
 export * from './activity-type';
+export * from './ban-user-request';
 export * from './error-response';
 export * from './external-user';
 export * from './gender';
@@ -9,7 +10,7 @@ export * from './goal-update-input-all-of';
 export * from './leaderboard';
 export * from './leaderboard-create-input';
 export * from './leaderboard-schedule';
-export * from './pick-prisma-goal-product-unchecked-create-input-exclude-keyof-prisma-goal-product-unchecked-create-input-id-or-created-at-or-updated-at-or-user-quest-draws';
+export * from './pick-prisma-goal-product-unchecked-create-input-exclude-keyof-prisma-goal-product-unchecked-create-input-id-or-created-at-or-updated-at';
 export * from './pick-prisma-leaderboard-reward-unchecked-create-input-exclude-keyof-prisma-leaderboard-reward-unchecked-create-input-id-or-created-at-or-updated-at';
 export * from './prisma-batch-payload';
 export * from './quest';
