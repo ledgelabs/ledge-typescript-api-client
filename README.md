@@ -1,10 +1,8 @@
 # ledge-typescript-api-client
 
-This is an early version of Ledge Developer Docs. Our API is still in active early stages of development and is subject to change.
+<i>This is an early version of Ledge Developer Docs. Our API is still in early stages of development and is subject to change.</i>
 
 Welcome to Ledge Developer Docs. We are constantly improving and we'd greatly appreciate your feedback, so please feel free to create issues or chat with ethan@theledge.io.
-
-[COMING SOON] We also have a developer chat in our Discord.
 
 ## Table of Contents
 
@@ -15,17 +13,12 @@ Welcome to Ledge Developer Docs. We are constantly improving and we'd greatly ap
   - [2. Setup Configuration](#2-setup-configuration)
   - [3. Register User](#3-register-user)
   - [4. Track User Activity](#4-track-user-activity)
-- [SDK Reference](#sdk-reference)
-  - [registerUser](#registeruserexternaluser-externaluser)
-  - [trackActivity](#trackactivitytrackactivityinput-trackactivityinput)
-  - [trackBatchActivitiesByUser](#trackbatchactivitiesbyuseruseridstring-inputs-trackbatchactivitiesinput)
 
 # Important Notes
 
 - We recommend you use our SDK on the server side for performance and security.
-- We recommend you track user activity in batches.
-- Have our SDK integrated and ready for testing 1-2 weeks before the event start date.
-- Register your users as early as possible to begin tracking their in game activity.
+- Ideally, have our SDK integrated and ready for testing 1-2 weeks before the event start date.
+- Optionally, setup a chat with our devs to ensure smooth integration.
 
 # Quick Start
 
@@ -55,167 +48,60 @@ const config = new Configuration({
 });
 ```
 
-### 3. Register user so we can track activity
+### 3. Choose Your Method of Implementation
 
-- Register this user as soon as possible, ideally when they open the game. so that we can start tracking player activity and reward progress towards quests.
-- Original creation date is when this user first joined your game.
+If you've chosen <b>Unique Player Email Method (Recommended)</b>, go to step 4.</br>
+
+If you've chosen <b>Unique Player ID Method</b>, go to step 5 & 6.
+
+### 4. Unique Player Email Method (Recommended)
+
+You can begin tracking player game data right away.
 
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
 
 const ledgeApi = new ExternalApi(config);
 
-await ledgeApi.registerUser("fake-api-key", {
+await ledgeApi.trackActivity({
+    email: "myplayeremail@email.com",
+    activityId: "kill-5-ogres",
+    occurrence: "2024-04-20T18:18:03.369Z",
+    userId: "unique-user-id",
+    count: 1,
+  });
+```
+
+<i>You're done!</i>
+
+### 5. Unique Player ID method (Alternative)
+
+- To start tracking player game data as soon as possible, register this user right when they open the game.
+- Original creation date is when this user first joined your game.
+- Return this response to the client side
+
+```
+import { ExternalApi } from "@ledgelabs/typescript-api-client";
+
+const ledgeApi = new ExternalApi(config);
+
+const response = await ledgeApi.registerUser("fake-api-key", {
     userId: "fake-user-id",
     username: "random-fake-username",
     originalCreationDate: new Date().toISOString(),
 });
 ```
 
-### 4. Track in-game user activity
+### 6. Track in-game user activity
 
 ```
 await ledgeApi.trackActivity({
     activityId: "kill-5-ogres",
     occurrence: "2024-04-20T18:18:03.369Z",
-    userId: "fake-user-id",
+    userId: "unique-user-id",
     count: 1,
   });
 ```
-
-# SDK Reference
-
-<details>
-<summary>registerUser(externalUser: ExternalUser)</summary>
-
-#### Description
-
-Registers this user (externally) with Ledge, so we can begin tracking their in game activity
-
-Ideally, call this method as soon as this user starts the game.
-
-#### Params
-
-```
-export interface ExternalUser {
-    originalCreationDate?: string;
-    userId: string;
-    username: string;
-}
-```
-
-_originalCreationDate_ is used for attribution purposes and revenue sharing but is optional, leaving this undefined will simply not attribute this user's acquisition and consequently no revenue shared. **Input this parameter if unsure**.
-
-_username_ does not need to be unique.
-
-_userId_ must be unique for each player within a game (per API_KEY)
-
-#### Return Type
-
-```
-export interface RegisterUser200Response {
-    linkingCode: string;
-    ledgeLink: string;
-}
-```
-
-_linkingCode_ is a unique code per user per game, used to identify your registered user with a Ledge account.
-
-_ledgeLink_ is a link to Ledge login page with a linking code.
-
-</details>
-
-<details>
-<summary>trackActivity(trackActivityInput: TrackActivityInput)</summary>
-
-#### Description
-
-Tracks a single game activity/event from a user.
-
-In order to prevent tracking duplicate activities **each userId, activityId, and occurrence when combined should be unique**.
-
-Use this method, if there are no plans to track activities in batches. Otherwise, tracking activities in batches is preferred for efficiency and to reduce load on our systems.
-
-#### Params
-
-```
-export interface TrackActivityInput {
-    occurrence: string;
-    count?: number;
-    activityId: string;
-    userId: string;
-}
-
-```
-
-_occurrence_ is the datetime of when this event occurred in ISO format. Example: 2024-04-20T18:18:03.369Z
-
-_count_ is the number of times this event happened. Default is 1.
-
-_activityId_ is similar to an analytics tracking event name which is used to identify activities with their quests.
-
-_userId_ is the same userId used to register this user.
-
-#### Return Type
-
-```
-export interface TrackActivity200Response {
-  message: string;
-  data: {
-    activityId: string;
-    userId: string;
-    count: number;
-    occurence: Date;
-    processed: boolean;
-  } | null;
-}
-```
-
-_message_ indicating activity has been successfully recorded and has been queued for processing.
-
-_data_ is null if no activity was tracked. Otherwise, returns tracked activity data.
-
-</details>
-
-<details>
-<summary>trackBatchActivitiesByUser(userId:string, inputs: TrackBatchACtivitIesInput)</summary>
-
-#### Description
-
-Track an array of game activities (events) for a given user ID.
-
-This method is similar to [trackActivity](#trackactivitytrackactivityinput-trackactivityinput), but it allows tracking multiple activities in a single request.
-
-#### Params
-
-```
-userId: string
-
-export interface TrackBatchActivitiesInput = {
-  activityId: string;
-  count?: number;
-  occurrence: string;
-}[];
-
-```
-
-See [trackActivity](#trackactivitytrackactivityinput-trackactivityinput) for details about params.
-
-#### Return Type
-
-```
-export interface TrackBatchActivitiesByUser200Response {
-    'count': number;
-    'message': string;
-}
-
-```
-
-count indicating the number of succesfully inserted activities.
-
-message indicating activity has been successfully recorded and has been queued for processing.
-
-</details>
 
 <br>
 
