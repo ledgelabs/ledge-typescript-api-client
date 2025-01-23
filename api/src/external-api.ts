@@ -161,10 +161,11 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
          * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
          * @param {string} userId 
          * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {string} [email] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trackBatchActivitiesByUser: async (userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        trackBatchActivitiesByUser: async (userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, email?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('trackBatchActivitiesByUser', 'userId', userId)
             // verify required parameter 'trackBatchActivitiesInputInner' is not null or undefined
@@ -186,6 +187,10 @@ export const ExternalApiAxiosParamCreator = function (configuration?: Configurat
 
             if (userId !== undefined) {
                 localVarQueryParameter['userId'] = userId;
+            }
+
+            if (email !== undefined) {
+                localVarQueryParameter['email'] = email;
             }
 
 
@@ -284,11 +289,12 @@ export const ExternalApiFp = function(configuration?: Configuration) {
          * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
          * @param {string} userId 
          * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {string} [email] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackBatchActivitiesByUser200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options);
+        async trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, email?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TrackBatchActivitiesByUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, email, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -342,11 +348,12 @@ export const ExternalApiFactory = function (configuration?: Configuration, baseP
          * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
          * @param {string} userId 
          * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+         * @param {string} [email] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: any): AxiosPromise<TrackBatchActivitiesByUser200Response> {
-            return localVarFp.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(axios, basePath));
+        trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, email?: string, options?: any): AxiosPromise<TrackBatchActivitiesByUser200Response> {
+            return localVarFp.trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, email, options).then((request) => request(axios, basePath));
         },
         /**
          * Immediately unban this user from winning prizes.
@@ -404,12 +411,13 @@ export class ExternalApi extends BaseAPI {
      * Track a batch of game activities (events) for a given user. This function is similar to   , but it allows tracking multiple activities in a single request.
      * @param {string} userId 
      * @param {Array<TrackBatchActivitiesInputInner>} trackBatchActivitiesInputInner 
+     * @param {string} [email] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ExternalApi
      */
-    public trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, options?: AxiosRequestConfig) {
-        return ExternalApiFp(this.configuration).trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, options).then((request) => request(this.axios, this.basePath));
+    public trackBatchActivitiesByUser(userId: string, trackBatchActivitiesInputInner: Array<TrackBatchActivitiesInputInner>, email?: string, options?: AxiosRequestConfig) {
+        return ExternalApiFp(this.configuration).trackBatchActivitiesByUser(userId, trackBatchActivitiesInputInner, email, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

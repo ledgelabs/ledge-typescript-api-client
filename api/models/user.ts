@@ -40,12 +40,6 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'mergedWith': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof User
-     */
     'gameId': string | null;
     /**
      * 
@@ -58,6 +52,12 @@ export interface User {
      * @type {string}
      * @memberof User
      */
+    'mergedWith': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
     'referredById': string | null;
     /**
      * 
@@ -65,6 +65,12 @@ export interface User {
      * @memberof User
      */
     'enableNotifications': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'hasAcceptedAge': boolean;
     /**
      * 
      * @type {boolean}

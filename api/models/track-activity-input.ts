@@ -25,13 +25,19 @@ export interface TrackActivityInput {
      * @type {string}
      * @memberof TrackActivityInput
      */
-    'occurrence': string;
+    'email'?: string;
     /**
      * 
      * @type {number}
      * @memberof TrackActivityInput
      */
     'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrackActivityInput
+     */
+    'occurrence': string;
     /**
      * 
      * @type {string}
