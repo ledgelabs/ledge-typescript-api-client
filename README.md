@@ -18,7 +18,7 @@ Welcome to Ledge Developer Docs. We are constantly improving and we'd greatly ap
 
 - We recommend you use our SDK on the server side for performance and security.
 - Ideally, have our SDK integrated and ready for testing 1-2 weeks before the event start date.
-- Optionally, setup a chat we our devs to ensure smooth integration.
+- Optionally, setup a chat with our devs to ensure smooth integration.
 
 # Quick Start
 
@@ -56,7 +56,7 @@ If you've chosen <b>Unique Player ID Method</b>, go to step 5 & 6.
 
 ### 4. Unique Player Email Method (Recommended)
 
-You can being tracking player game data right away.
+You can begin tracking player game data right away.
 
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
@@ -78,13 +78,14 @@ await ledgeApi.trackActivity({
 
 - To start tracking player game data as soon as possible, register this user right when they open the game.
 - Original creation date is when this user first joined your game.
+- Return this response to the client side
 
 ```
 import { ExternalApi } from "@ledgelabs/typescript-api-client";
 
 const ledgeApi = new ExternalApi(config);
 
-await ledgeApi.registerUser("fake-api-key", {
+const response = await ledgeApi.registerUser("fake-api-key", {
     userId: "fake-user-id",
     username: "random-fake-username",
     originalCreationDate: new Date().toISOString(),
